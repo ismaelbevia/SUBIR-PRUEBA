@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{detalles.first_name}}
+{% endblock title %}
+
+
+
+{% block content %}
+    {%include 'includes/header.html'%}
+    <p> </p>
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x align-center">
+            
+            <div class="cell large-4 card" style="width: 300px;">
+              <div class="card-divider">
+                {{detalles.get_job_display}}
+              </div>
+              {% if detalles.avatar %}
+                  <img src="{{detalles.avatar.url}}">
+              {% else %}
+                  <img src="{% static 'img/1.jpg' %}">
+              {% endif %}
+                  
+              <div class="cell card-section">
+                <h4>{{detalles.first_name}} {{detalles.last_name}}</h4>
+                <p>{{detalles.first_name}}</p>
+                <p>{{detalles.last_name}}</p>
+                <p>{{detalles.departamento.shorname}}</p>
+                <p class="label">Habilidades:<p>
+                <ul class="vertical menu">
+                    {% for h in detalles.habilidades.all %}
+                    <li>{{h}}</li>
+                    {% endfor %}
+                </ul>
+
+              </div>
+            </div> 
+        </div>
+    </div>
+            
+{% endblock content %}
